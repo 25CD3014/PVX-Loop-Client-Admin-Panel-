@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    /* PVX Loop Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 209 100% 15%; /* Darker Blue for text */
+    --primary: 209 100% 30.4%; /* PVX Blue: rgb(0, 82, 155) */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 122 39% 96%; /* Light Green */
+    --secondary-foreground: 122 39% 20%;
+    --accent: 45 100% 51.4%; /* PVX Yellow: rgb(255, 193, 7) */
+    --accent-foreground: 45 100% 15%;
+    --ring: 209 100% 30.4%; /* PVX Blue for focus rings */
+    /* Neutral & Utility Colors */
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --border: 0 0% 89.8%;
+    --card: 0 0% 100%;
+    --card-foreground: 209 100% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 209 100% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 0 0% 89.8%;
+    /* Chart Colors */
+    --chart-1: 209 100% 30.4%; /* Blue */
+    --chart-2: 122 39.4% 49.2%; /* Green */
+    --chart-3: 45 100% 51.4%; /* Yellow */
+    --chart-4: 209 100% 60%; /* Lighter Blue */
+    --chart-5: 122 39% 70%; /* Lighter Green */
+    /* Radius */
+    --radius: 0.5rem;
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 209 100% 15%;
+    --sidebar-primary: 209 100% 30.4%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 209 100% 96%;
+    --sidebar-accent-foreground: 209 100% 15%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 209 100% 30.4%;
+  }
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+}
+@layer components {
+  /* Button System */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-gradient {
+    @apply btn text-white shadow-primary hover:shadow-glow hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+  }
+  /* Gradient System */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.9) 100%);
+  }
+  .bg-gradient-rainbow {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(122, 39.4%, 49.2%) 50%, hsl(var(--accent)) 100%);
+  }
+  /* Text System */
+  .text-gradient {
+    background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(122, 39.4%, 49.2%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Glass Morphism */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10 shadow-glass;
+  }
+  /* Interactive Effects */
+  .floating {
+    animation: float 2s ease-in-out infinite;
+  }
+  .rotating {
+    animation: rotate 2s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(-4px);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .shimmer-bg {
+    @apply relative overflow-hidden;
+  }
+  .shimmer-bg::before {
+    @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    content: '';
+  }
+  /* Layout Utilities */
+  .center {
+    @apply flex items-center justify-center;
+  }
+  .center-col {
+    @apply flex flex-col items-center justify-center;
+  }
+  /* Responsive Typography */
+  .text-display {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight;
+  }
+  .text-body {
+    @apply text-base sm:text-lg text-muted-foreground leading-relaxed;
+  }
+}
